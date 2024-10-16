@@ -1,0 +1,16 @@
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        from collections import Counter
+
+        x = Counter(nums)
+        majority = len(nums)/2
+
+        for num,count in x.items():
+            if count > majority:
+                return num
+        return -1
+        
