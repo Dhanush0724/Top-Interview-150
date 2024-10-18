@@ -1,0 +1,56 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+
+        # n = len(prices)
+        # dp = [[-1 for _ in range(2)] for _ in range(n)]
+        
+        # def f(ind,buy):
+
+        #     if ind == n : 
+        #         return 0
+        #     if dp[ind][buy]!=-1:
+        #         return dp[ind][buy]
+        #     profit = 0
+        #     if buy == 0:
+
+        #         profit = max(0+f(ind+1,0),-prices[ind]+f(ind+1,1))
+            
+        #     else :
+        #         profit = max(0+f(ind+1,1),prices[ind]+f(ind+1,0))
+            
+        #     dp[ind][buy] = profit
+        #     return dp[ind][buy]
+
+
+        # return f(0,0)
+
+        n = len(prices)
+        if n == 0:
+            return 0
+        
+        dp = [[0 for _ in range(2)] for _ in range(n+1)]
+
+        dp[n][0] = dp[n][1] = 0
+
+        for ind in range(n-1,-1,-1):
+            for buy in range(2):
+
+                profit = 0
+
+                if buy == 0:
+
+                    profit = max(dp[ind+1][0],-prices[ind]+dp[ind+1][1])
+                
+                else :
+
+                    profit  = max(dp[ind+1][1],prices[ind]+dp[ind+1][0])
+                
+                dp[ind][buy] = profit
+
+        return dp[0][0]
+
+        
