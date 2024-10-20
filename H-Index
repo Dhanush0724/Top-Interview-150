@@ -1,0 +1,15 @@
+class Solution(object):
+    def hIndex(self, citations):
+        """
+        :type citations: List[int]
+        :rtype: int
+        """
+        h = len(citations)
+        maxi = 0
+        citations.sort()
+        for i in range(h):
+
+            if citations[i] >= h-i:
+                maxi = max(maxi,h-i)
+        
+        return maxi
