@@ -1,0 +1,22 @@
+class Solution(object):
+    def trap(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        n = len(height)
+
+        
+        suffix = [0]*n
+
+        suffix[n-1] = height[n-1]
+        for i in range(n-2,-1,-1):
+            suffix[i] = max(height[i],suffix[i+1])
+
+        total =  0
+        leftmax = 0
+        for i in range(n):
+            leftmax = max(leftmax,height[i])
+            total+=max(0,min(leftmax,suffix[i]) - height[i])
+        
+        return total
