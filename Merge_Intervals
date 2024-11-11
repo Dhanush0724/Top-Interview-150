@@ -1,0 +1,39 @@
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # intervals.sort()
+        # res = []
+        # n = len(intervals)
+
+        # for i in range(n):
+        #     start = intervals[i][0]
+        #     end = intervals[i][1]
+
+        #     if res and end <= res[-1][1]:
+        #         continue
+
+        #     for j in range(i+1,n):
+        #         if intervals[j][0] <= end:
+        #             end = max(end,intervals[j][1])
+        #         else :
+        #             pass
+        #     res.append([start,end])
+        
+        # return res
+
+        intervals.sort()
+        n = len(intervals)
+        res = []
+        for i in range(n):
+
+            if not res or intervals[i][0] > res[-1][1]:
+                res.append(intervals[i])
+            
+            else :
+                res[-1][1] = max(res[-1][1],intervals[i][1])
+        return res
+
+        
