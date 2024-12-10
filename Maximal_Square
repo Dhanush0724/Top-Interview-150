@@ -1,0 +1,52 @@
+class Solution(object):
+    def maximalSquare(self, matrix):
+        """
+        :type matrix: List[List[str]]
+        :rtype: int
+        """
+        # if not matrix or not matrix[0]:
+        #     return 0
+        
+        # n , m = len(matrix), len(matrix[0])
+        # maxi = 0
+        # dp = [[-1 for _ in range(m)] for _ in range(n)]
+        # def f(i,j):
+        #     if i <0  or j <0 :
+        #         return 0
+        #     if matrix[i][j] == '0':
+        #         return 0
+        #     if dp[i][j]!= -1:
+        #         return dp[i][j]
+        #     up = f(i-1,j)
+        #     left = f(i,j-1)
+        #     diagonal = f(i-1,j-1)
+        #     curr = min(up,left,diagonal)+1
+
+        #     dp[i][j] = curr
+        #     return dp[i][j]
+        # for i in range(n):
+        #     for j in range(m):
+        #         if matrix[i][j] == "1":
+        #             maxi = max(maxi,f(i,j))
+        
+        # return maxi*maxi
+
+        if not matrix or not matrix[0]:
+            return 0
+        
+        n , m = len(matrix), len(matrix[0])
+
+        dp = [[0]*m for _ in range(n)]
+        maxi = 0
+        for i in range(n):
+            for j in range(m):
+                if matrix[i][j] == "1":
+                    if i == 0 or j == 0:
+                        dp[i][j] = 1
+                    else :
+                        dp[i][j] = min(dp[i-1][j],dp[i-1][j-1],dp[i][j-1])+1
+
+                    maxi = max(maxi,dp[i][j])
+        return maxi*maxi
+
+        
