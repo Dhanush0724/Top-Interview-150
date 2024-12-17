@@ -1,0 +1,45 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        
+        
+        def fi(nums,target):
+            low = 0
+            high = len(nums)-1
+            first = -1
+            while low<=high:
+                mid = (low+high)//2
+
+                if nums[mid] == target :
+                    first = mid
+                    high = mid-1
+                elif nums[mid] < target:
+                    low = mid+1
+                else :
+                    high = mid-1
+            return first
+        
+        def la(nums,target):
+            low = 0
+            high = len(nums)-1
+            last = -1
+            while low<=high:
+                mid = (low+high)//2
+
+                if nums[mid] == target :
+                    last = mid
+                    low = mid+1
+                elif nums[mid] < target:
+                    low = mid+1
+                else :
+                    high = mid-1
+            return last
+
+        start = fi(nums,target)
+        if start != -1:
+            end = la(nums,target)
+        else :
+            return [-1,-1]
+        return [start,end]
+
+        
+
